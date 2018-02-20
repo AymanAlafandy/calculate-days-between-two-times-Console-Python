@@ -1,0 +1,53 @@
+# Given your birthday and the current date, calculate your age 
+# in days. Compensate for leap days. Assume that the birthday 
+# and current date are correct dates (and no time travel). 
+# Simply put, if you were born 1 Jan 2012 and todays date is 
+# 2 Jan 2012 you are 1 day old.
+
+# input first date last date
+# output time in days
+def monthes(m):
+    daysOfMonths = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    i = 0
+    sumOfMonthes = 0
+    while i < m:
+        sumOfMonthes =sumOfMonthes + daysOfMonths[i]
+        i= i+1
+    return sumOfMonthes
+#print monthes(5) # test
+# number of monthes can be used in array that take an input and add 1 to its index
+
+def isLeapYear(year):
+    i = 0
+    sumOfYears = 0
+    while i< year:
+        if year % 4 != 0:
+           sumOfYears=sumOfYears +365
+        elif year % 100 != 0:
+            sumOfYears = sumOfYears +366
+        elif year % 400 != 0:
+            sumOfYears = sumOfYears +365
+        else:
+            sumOfYears= sumOfYears +366
+        i = i +1
+    return sumOfYears
+            
+#print isLeapYear(3000) # test
+    # Your code here. Return True or False
+    # Pseudo code for this algorithm is found at
+    # http://en.wikipedia.org/wiki/Leap_year#Algorithm
+    ##
+#if (year is not divisible by 4) then (it is a common year)
+#else if (year is not divisible by 100) then (it is a leap year)
+#else if (year is not divisible by 400) then (it is a common year)
+#else (it is a leap year)
+
+def daysBetweenDates(y1, m1, d1, y2, m2, d2):
+    oldDate= isLeapYear(y1)+monthes(m1)+d1
+    newDate= isLeapYear(y2)+monthes(m2)+d2
+    days = newDate - oldDate
+    return days
+
+print daysBetweenDates(1993,6,17,2018,2,20) #Test
+print daysBetweenDates(1993,6,17,1997,9,28) #Test
+print daysBetweenDates(1997,9,28,2018,2,20) #Test
